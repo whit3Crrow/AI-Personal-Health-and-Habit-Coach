@@ -44,3 +44,7 @@ API do zarządzania metrykami zdrowotnymi użytkownika (sen, aktywność, posił
 | GET    | /user-data | - | Pobiera dane o użytkowniku |
 | POST   | /user-data | Body: `UserData` DTO (`WeightKilograms`, `HeightCentimeters`, `Age`) | Dodaje dane o użytkowniku |
 | PUT    | /user-data | Body: `UserData` DTO (`WeightKilograms`, `HeightCentimeters`, `Age`) | Aktualizuje dane o użytkowniku |
+
+## Diagram UML
+
+![DiagramUML](./docs/diagram_uml.png)
