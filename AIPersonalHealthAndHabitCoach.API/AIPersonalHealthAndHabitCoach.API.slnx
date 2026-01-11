@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../AIPersonalHealthAndHabitCoach.Application/AIPersonalHealthAndHabitCoach.Application.csproj" />
+  <Project Path="../AIPersonalHealthAndHabitCoach.Domain/AIPersonalHealthAndHabitCoach.Domain.csproj" />
+  <Project Path="../AIPersonalHealthAndHabitCoach.Infrastructure/AIPersonalHealthAndHabitCoach.Infrastructure.csproj" />
+  <Project Path="AIPersonalHealthAndHabitCoach.API.csproj" />
+</Solution>
