@@ -10,32 +10,37 @@ API do zarządzania metrykami zdrowotnymi użytkownika (sen, aktywność, posił
 |--------|---------|-----------------|------|
 | GET    | /metrics | Query: `page` (optional), `pageSize` (optional), `type` (optional: sleep, activity, meal) | Pobiera wszystkie metryki z paginacją i możliwością filtrowania po typie |
 | GET    | /metrics/{id} | Path: `id` | Pobiera konkretną metrykę |
-| POST   | /metrics/sleep | Body: `SleepMetric` DTO (`DurationMinutes`, `SleepQuality`, `DateUtc`) | Dodaje nową metrykę snu |
-| POST   | /metrics/activity | Body: `ActivityMetric` DTO (`Steps`, `CaloriesBurned`, `DateUtc`) | Dodaje nową metrykę aktywności |
-| POST   | /metrics/meal | Body: `MealMetric` DTO (`MealType`, `Calories`, `DateUtc`) | Dodaje nową metrykę posiłku |
-| PUT    | /metrics/sleep/{id} | Path: `id`, Body: `SleepMetric` DTO | Aktualizuje metrykę snu |
-| PUT    | /metrics/activity/{id} | Path: `id`, Body: `ActivityMetric` DTO | Aktualizuje metrykę aktywności |
-| PUT    | /metrics/meal/{id} | Path: `id`, Body: `MealMetric` DTO | Aktualizuje metrykę posiłku |
-| DELETE | /metrics/{id} | Path: `id` | Usuwa metrykę |
+| POST   | /metrics/sleep | Body: `SleepMetric` DTO (`DurationMinutes`, `SleepQuality`, `StartDate`) | Dodaje nowe dane dotyczące snu |
+| POST   | /metrics/activity | Body: `ActivityMetric` DTO (`Description`, `CaloriesBurned`, `ActivityType`, `StartDate`) | Dodaje nowe dane dotyczące aktywności |
+| POST   | /metrics/meal | Body: `MealMetric` DTO (`Description`, `ProteinGrams`, `CarbonGrams`, `FatGrams`, `StartDate`) | Dodaje nowe dane dotyczące posiłku |
+| PUT    | /metrics/sleep/{id} | Path: `id`, Body: `SleepMetric` DTO | Aktualizuje dane dotyczące snu |
+| PUT    | /metrics/activity/{id} | Path: `id`, Body: `ActivityMetric` DTO | Aktualizuje dane dotyczące aktywności |
+| PUT    | /metrics/meal/{id} | Path: `id`, Body: `MealMetric` DTO | Aktualizuje dane dotyczące posiłku |
+| DELETE | /metrics/{id} | Path: `id` | Usuwa konkretną metrykę |
 
 ---
 
 ### 2. Stats
 
-| Metoda | Endpoint | Query | Opis |
+| Metoda | Endpoint | Parametry | Opis |
 |--------|---------|-------|------|
-| GET    | /stats/summary | `startDate`, `endDate` | Raport ogólny w zadanym okresie |
-| GET    | /stats/sleep | `startDate`, `endDate` | Statystyki snu |
-| GET    | /stats/activity | `startDate`, `endDate` | Statystyki aktywności |
-| GET    | /stats/meal | `startDate`, `endDate` | Statystyki posiłków |
+| GET    | /stats/metrics/summary | Query: `startDate`, `endDate` | Raport ogólny metryk w zadanym okresie |
+| GET    | /stats/metrics/{type} | Path: `type` (sleep, activity, meal), Query: `startDate`, `endDate` | Statystyki dotyczące danej metryki w zadanym okresie |
 
 ---
 
-### 3. AI Module
+### 3. AI
 
-| Metoda | Endpoint | Query | Opis |
+| Metoda | Endpoint | Parametry | Opis |
 |--------|---------|-------|------|
-| GET   | /ai/analyze | `startDate`, `endDate` | Analiza wszystkich metryk i rekomendacje |
-| GET   | /ai/analyze/sleep | `startDate`, `endDate` | Analiza tylko snu |
-| GET   | /ai/analyze/activity | `startDate`, `endDate` | Analiza tylko aktywności |
-| GET   | /ai/analyze/meal | `startDate`, `endDate` | Analiza tylko posiłków |
+| GET    | /ai/metrics/analyze | Query: `startDate`, `endDate`, `question` | Dostarcza podsumowanie i rekomendacje oparte na metrykach z wybranego okresu oraz informacjach o użytkowniku. Umożliwia również zadanie pytania, na które odpowiedź zostanie wygenerowana w kontekście tych danych. |
+
+---
+
+### 4. User
+
+| Metoda | Endpoint | Parametry | Opis |
+|--------|---------|-------|------|
+| GET    | /user-data | - | Pobiera dane o użytkowniku |
+| POST   | /user-data | Body: `UserData` DTO (`WeightKilograms`, `HeightCentimeters`, `Age`) | Dodaje dane o użytkowniku |
+| PUT    | /user-data | Body: `UserData` DTO (`WeightKilograms`, `HeightCentimeters`, `Age`) | Aktualizuje dane o użytkowniku |
