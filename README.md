@@ -37,7 +37,7 @@ API do zarządzania metrykami zdrowotnymi użytkownika (sen, aktywność, posił
 
 ---
 
-### 4. User
+### 4. Users
 
 | Metoda | Endpoint | Parametry | Opis |
 |--------|---------|-------|------|

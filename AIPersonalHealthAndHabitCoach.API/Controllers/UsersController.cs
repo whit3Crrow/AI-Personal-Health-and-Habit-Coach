@@ -4,7 +4,8 @@
     {
         public static void MapUsersEndpoints(this IEndpointRouteBuilder app)
         {
-            var group = app.MapGroup("api/users");
+            var group = app.MapGroup("api/users")
+                .WithTags("Users");
 
             group.MapPost("/", () => Results.Created());
 

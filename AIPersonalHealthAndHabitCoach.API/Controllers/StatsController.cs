@@ -6,7 +6,8 @@ namespace AIPersonalHealthAndHabitCoach.API.Controllers
     {
         public static void MapStatsEndpoints(this IEndpointRouteBuilder app)
         {
-            var group = app.MapGroup("api/stats");
+            var group = app.MapGroup("api/stats")
+                .WithTags("Stats");
 
             group.MapGet("/metrics/summary", () => Results.Ok());
 

@@ -4,7 +4,8 @@
     {
         public static void MapAIEndpoints(this IEndpointRouteBuilder app)
         {
-            var group = app.MapGroup("api/ai");
+            var group = app.MapGroup("api/ai")
+                .WithTags("AI");
 
             group.MapGet("/metrics/analyze", () =>
             {

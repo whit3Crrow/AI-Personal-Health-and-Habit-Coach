@@ -4,7 +4,8 @@
     {
         public static void MapMetricsEndpoints(this IEndpointRouteBuilder app)
         {
-            var group = app.MapGroup("api/metrics");
+            var group = app.MapGroup("api/metrics")
+                .WithTags("Metrics");
 
             group.MapGet("/", () => Results.Ok());
             group.MapGet("/{id}", (Guid id) => Results.Ok());
