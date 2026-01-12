@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace AIPersonalHealthAndHabitCoach.Application.Users.Commands.CreateUser
+namespace AIPersonalHealthAndHabitCoach.Application.Users.Commands.UpdateUser
 {
-    public class CreateUserCommand : IRequest<Guid>
+    public class UpdateUserCommand : IRequest<Guid>
     {
         public required decimal WeightKilograms { get; set; }
         public required decimal HeightCentimeters { get; set; }
