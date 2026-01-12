@@ -1,29 +1,26 @@
 ﻿using AIPersonalHealthAndHabitCoach.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using System;
 
 namespace AIPersonalHealthAndHabitCoach.API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UserController : ControllerBase
+    public static class UserController
     {
-        [HttpPost]
-        public IActionResult Create(UserData user)
+        public static void MapUserEndpoints(this IEndpointRouteBuilder app)
         {
-            return Ok("Utworzono użytkownika");
-        }
+            var group = app.MapGroup("api/user");
 
-        [HttpPut]
-        public IActionResult Update(UserData user)
-        {
-            return Ok("Zaktualizowano dane użytkownika");
-        }
+            group.MapPost("/", (UserData user) => Results.Ok("Utworzono użytkownika"));
 
-        [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
-        {
-            return Ok(new UserData { Id = id, Age = 25, WeightKilograms = 70 });
+            group.MapPut("/", (UserData user) => Results.Ok("Zaktualizowano dane użytkownika"));
+
+            group.MapGet("/{id:guid}", (Guid id) =>
+            {
+                // Zwracamy mocka (przykładowe dane)
+                return Results.Ok(new UserData { Id = id, Age = 25, WeightKilograms = 70 });
+            });
         }
     }
 }

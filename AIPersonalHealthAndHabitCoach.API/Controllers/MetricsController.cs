@@ -1,69 +1,33 @@
 ﻿using AIPersonalHealthAndHabitCoach.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using System;
 
 namespace AIPersonalHealthAndHabitCoach.API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class MetricsController : ControllerBase
+    public static class MetricsController
     {
-        // --- SEKCJA GET (Pobieranie) ---
-        [HttpGet]
-        public IActionResult GetAll()
+        public static void MapMetricsEndpoints(this IEndpointRouteBuilder app)
         {
-            return Ok("Pobrano wszystko");
-        }
+            var group = app.MapGroup("api/metrics");
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
-        {
-            return Ok($"Pobrano metrykę o ID: {id}");
-        }
+            // GET
+            group.MapGet("/", () => Results.Ok("Pobrano wszystkie metryki"));
+            group.MapGet("/{id:guid}", (Guid id) => Results.Ok($"Pobrano metrykę {id}"));
 
-        // --- SEKCJA CREATE (Tworzenie) ---
-        [HttpPost("sleep")]
-        public IActionResult CreateSleep(Sleep sleep)
-        {
-            return Ok("Dodano sen");
-        }
+            // POST (Create)
+            group.MapPost("/sleep", (Sleep sleep) => Results.Ok("Dodano sen"));
+            group.MapPost("/activity", (Activity activity) => Results.Ok("Dodano aktywność"));
+            group.MapPost("/meal", (Meal meal) => Results.Ok("Dodano posiłek"));
 
-        [HttpPost("activity")]
-        public IActionResult CreateActivity(Activity activity)
-        {
-            return Ok("Dodano aktywność");
-        }
+            // PUT (Update)
+            group.MapPut("/sleep", (Sleep sleep) => Results.Ok("Zaktualizowano sen"));
+            group.MapPut("/activity", (Activity activity) => Results.Ok("Zaktualizowano aktywność"));
+            group.MapPut("/meal", (Meal meal) => Results.Ok("Zaktualizowano posiłek"));
 
-        [HttpPost("meal")]
-        public IActionResult CreateMeal(Meal meal)
-        {
-            return Ok("Dodano posiłek");
-        }
-
-        // --- SEKCJA UPDATE (Aktualizacja - metody z diagramu) ---
-        [HttpPut("sleep")]
-        public IActionResult UpdateSleep(Sleep sleep)
-        {
-            return Ok("Zaktualizowano sen");
-        }
-
-        [HttpPut("activity")]
-        public IActionResult UpdateActivity(Activity activity)
-        {
-            return Ok("Zaktualizowano aktywność");
-        }
-
-        [HttpPut("meal")]
-        public IActionResult UpdateMeal(Meal meal)
-        {
-            return Ok("Zaktualizowano posiłek");
-        }
-
-        // --- SEKCJA DELETE (Usuwanie) ---
-        [HttpDelete("{id}")]
-        public IActionResult DeleteById(Guid id)
-        {
-            return Ok($"Usunięto element o ID: {id}");
+            // DELETE
+            group.MapDelete("/{id:guid}", (Guid id) => Results.Ok($"Usunięto element {id}"));
         }
     }
 }

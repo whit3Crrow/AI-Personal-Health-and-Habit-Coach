@@ -1,32 +1,25 @@
-﻿using AIPersonalHealthAndHabitCoach.API.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using System;
 
 namespace AIPersonalHealthAndHabitCoach.API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class StatsController : ControllerBase
+    public static class StatsController
     {
-        private readonly IStatsMetricService _statsService;
-
-        public StatsController()
+        public static void MapStatsEndpoints(this IEndpointRouteBuilder app)
         {
-            _statsService = new StatsMetricService();
-        }
+            var group = app.MapGroup("api/stats");
 
-        [HttpGet("summary/{userId}")]
-        public IActionResult GetMetricsSummary(Guid userId)
-        {
-            var result = _statsService.GetSummary(userId);
-            return Ok(result);
-        }
+            group.MapGet("/summary/{userId:guid}", (Guid userId) =>
+            {
+                return Results.Ok("Tu będzie podsumowanie statystyk");
+            });
 
-        [HttpGet("type/{userId}")]
-        public IActionResult GetMetricByType(Guid userId, string type)
-        {
-            var result = _statsService.GetSpecific(userId, type);
-            return Ok(result);
+            group.MapGet("/type/{userId:guid}", (Guid userId, string type) =>
+            {
+                return Results.Ok($"Szczegółowe statystyki dla: {type}");
+            });
         }
     }
 }
