@@ -18,7 +18,11 @@ namespace AIPersonalHealthAndHabitCoach.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.ApplyConfiguration(new ActivityConfiguration());
+            modelBuilder.ApplyConfiguration(new MealConfiguration());
             modelBuilder.ApplyConfiguration(new SleepConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+
         }
     }
 }
