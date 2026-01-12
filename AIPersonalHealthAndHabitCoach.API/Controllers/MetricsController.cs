@@ -1,10 +1,4 @@
-﻿using AIPersonalHealthAndHabitCoach.Domain.Entities;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-using System;
-
-namespace AIPersonalHealthAndHabitCoach.API.Controllers
+﻿namespace AIPersonalHealthAndHabitCoach.API.Controllers
 {
     public static class MetricsController
     {
@@ -12,22 +6,18 @@ namespace AIPersonalHealthAndHabitCoach.API.Controllers
         {
             var group = app.MapGroup("api/metrics");
 
-            // GET
-            group.MapGet("/", () => Results.Ok("Pobrano wszystkie metryki"));
-            group.MapGet("/{id:guid}", (Guid id) => Results.Ok($"Pobrano metrykę {id}"));
+            group.MapGet("/", () => Results.Ok());
+            group.MapGet("/{id}", (Guid id) => Results.Ok());
 
-            // POST (Create)
-            group.MapPost("/sleep", (Sleep sleep) => Results.Ok("Dodano sen"));
-            group.MapPost("/activity", (Activity activity) => Results.Ok("Dodano aktywność"));
-            group.MapPost("/meal", (Meal meal) => Results.Ok("Dodano posiłek"));
+            group.MapPost("/sleep", () => Results.Created());
+            group.MapPost("/activity", () => Results.Created());
+            group.MapPost("/meal", () => Results.Created());
 
-            // PUT (Update)
-            group.MapPut("/sleep", (Sleep sleep) => Results.Ok("Zaktualizowano sen"));
-            group.MapPut("/activity", (Activity activity) => Results.Ok("Zaktualizowano aktywność"));
-            group.MapPut("/meal", (Meal meal) => Results.Ok("Zaktualizowano posiłek"));
+            group.MapPut("/sleep", () => Results.NoContent());
+            group.MapPut("/activity", () => Results.NoContent());
+            group.MapPut("/meal", () => Results.NoContent());
 
-            // DELETE
-            group.MapDelete("/{id:guid}", (Guid id) => Results.Ok($"Usunięto element {id}"));
+            group.MapDelete("/{id}", (Guid id) => Results.NoContent());
         }
     }
 }

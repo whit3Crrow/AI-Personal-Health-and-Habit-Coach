@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-using System;
+﻿using AIPersonalHealthAndHabitCoach.Domain.Enums;
 
 namespace AIPersonalHealthAndHabitCoach.API.Controllers
 {
@@ -11,15 +8,9 @@ namespace AIPersonalHealthAndHabitCoach.API.Controllers
         {
             var group = app.MapGroup("api/stats");
 
-            group.MapGet("/summary/{userId:guid}", (Guid userId) =>
-            {
-                return Results.Ok("Tu będzie podsumowanie statystyk");
-            });
+            group.MapGet("/metrics/summary", () => Results.Ok());
 
-            group.MapGet("/type/{userId:guid}", (Guid userId, string type) =>
-            {
-                return Results.Ok($"Szczegółowe statystyki dla: {type}");
-            });
+            group.MapGet("/metrics/{type}", (MetricType type) => Results.Ok());
         }
     }
 }

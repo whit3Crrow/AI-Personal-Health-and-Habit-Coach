@@ -1,6 +1,6 @@
 ﻿namespace AIPersonalHealthAndHabitCoach.Domain.Entities
 {
-    public class Meal : Metrics
+    public class Meal : Metric
     {
         public string Description { get; set; } = string.Empty;
         public decimal ProteinGrams { get; set; }

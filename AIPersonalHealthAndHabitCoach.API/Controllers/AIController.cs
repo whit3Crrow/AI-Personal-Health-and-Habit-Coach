@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-
-namespace AIPersonalHealthAndHabitCoach.API.Controllers
+﻿namespace AIPersonalHealthAndHabitCoach.API.Controllers
 {
     public static class AIController
     {
@@ -10,9 +6,9 @@ namespace AIPersonalHealthAndHabitCoach.API.Controllers
         {
             var group = app.MapGroup("api/ai");
 
-            group.MapGet("analyze", () =>
+            group.MapGet("/metrics/analyze", () =>
             {
-                return Results.Ok("Tu będzie analiza AI Twoich nawyków.");
+                return Results.Ok();
             });
         }
     }

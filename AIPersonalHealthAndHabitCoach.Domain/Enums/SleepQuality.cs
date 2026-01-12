@@ -2,8 +2,8 @@
 {
     public enum SleepQuality
     {
-        GOOD,
-        MEDIUM,
-        BAD
+        Good,
+        Medium,
+        Bad
     }
 }
