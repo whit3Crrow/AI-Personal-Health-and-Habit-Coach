@@ -8,23 +8,21 @@ namespace AIPersonalHealthAndHabitCoach.Infrastructure.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Meal> builder)
         {
-            builder.HasKey(e => e.Id);
-
-            builder.Property(e => e.StartDateTimeUtc)
-                .IsRequired();
-
             builder.Property(e => e.Description)
                 .HasMaxLength(512)
                 .IsRequired();
 
             builder.Property(e => e.ProteinGrams)
+                .HasPrecision(18, 2)
                 .IsRequired();
 
             builder.Property(e => e.CarbonGrams)
+                .HasPrecision(18, 2)
                .IsRequired();
 
             builder.Property(e => e.FatGrams)
-               .IsRequired();
+                .HasPrecision(18, 2)
+                .IsRequired();
         }
     }
 }

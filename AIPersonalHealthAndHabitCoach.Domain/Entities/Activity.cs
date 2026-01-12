@@ -6,6 +6,6 @@ namespace AIPersonalHealthAndHabitCoach.Domain.Entities
     {
         public string Description { get; set; } = string.Empty;
         public int CaloriesBurned { get; set; }
-        public ActivityType Type { get; set; }
+        public ActivityType ActivityType { get; set; }
     }
 }

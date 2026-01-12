@@ -1,9 +1,6 @@
 ﻿using AIPersonalHealthAndHabitCoach.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AIPersonalHealthAndHabitCoach.Infrastructure.Persistence.Configurations
 {
@@ -14,9 +11,11 @@ namespace AIPersonalHealthAndHabitCoach.Infrastructure.Persistence.Configuration
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.WeightKilograms)
+                .HasPrecision(18, 2)
                 .IsRequired();
 
             builder.Property(e => e.HeightCentimeters)
+                .HasPrecision(18, 2)
                 .IsRequired();
 
             builder.Property(e => e.Age)

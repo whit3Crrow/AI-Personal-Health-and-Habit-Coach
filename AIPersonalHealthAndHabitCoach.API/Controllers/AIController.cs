@@ -7,10 +7,7 @@
             var group = app.MapGroup("api/ai")
                 .WithTags("AI");
 
-            group.MapGet("/metrics/analyze", () =>
-            {
-                return Results.Ok();
-            });
+            group.MapGet("/metrics/analyze", () => Results.Ok());
         }
     }
 }

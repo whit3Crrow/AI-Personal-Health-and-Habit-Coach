@@ -8,11 +8,6 @@ namespace AIPersonalHealthAndHabitCoach.Infrastructure.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Activity> builder)
         {
-            builder.HasKey(e => e.Id);
-
-            builder.Property(e => e.StartDateTimeUtc)
-                .IsRequired();
-
             builder.Property(e => e.Description)
                 .HasMaxLength(512)
                 .IsRequired();
@@ -20,7 +15,7 @@ namespace AIPersonalHealthAndHabitCoach.Infrastructure.Persistence.Configuration
             builder.Property(e => e.CaloriesBurned)
                 .IsRequired();
 
-            builder.Property(e => e.Type)
+            builder.Property(e => e.ActivityType)
                .IsRequired();
         }
     }

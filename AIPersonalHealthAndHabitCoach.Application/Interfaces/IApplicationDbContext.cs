@@ -5,9 +5,11 @@ namespace AIPersonalHealthAndHabitCoach.Application.Interfaces
 {
     public interface IApplicationDbContext
     {
-        DbSet<Sleep> Sleeps { get; }
-        DbSet<Activity> Activities { get; }
-        DbSet<Meal> Meals { get; }
-        DbSet<User> Users { get; }
+        DbSet<Sleep> Sleeps { get; set; }
+        DbSet<Activity> Activities { get; set; }
+        DbSet<Meal> Meals { get; set; }
+        DbSet<User> Users { get; set; }
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
