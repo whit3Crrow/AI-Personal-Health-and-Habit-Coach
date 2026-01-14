@@ -1,4 +1,7 @@
-﻿namespace AIPersonalHealthAndHabitCoach.API.Controllers
+﻿using AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.CreateSleep;
+using MediatR;
+
+namespace AIPersonalHealthAndHabitCoach.API.Controllers
 {
     public static class MetricsController
     {
@@ -10,7 +13,12 @@
             group.MapGet("/", () => Results.Ok());
             group.MapGet("/{id}", (Guid id) => Results.Ok());
 
-            group.MapPost("/sleep", () => Results.Created());
+            group.MapPost("/sleep", async (CreateSleepCommand command, IMediator mediator) =>
+            {
+                var sleepId = await mediator.Send(command);
+
+                return Results.Created($"api/metrics/sleep/{sleepId}", sleepId);
+            });
             group.MapPost("/activity", () => Results.Created());
             group.MapPost("/meal", () => Results.Created());
 

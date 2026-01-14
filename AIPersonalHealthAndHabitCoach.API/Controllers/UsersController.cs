@@ -17,7 +17,7 @@ namespace AIPersonalHealthAndHabitCoach.API.Controllers
             {
                 var userId = await mediator.Send(command);
 
-                return Results.Created($"/users/{userId}", userId);
+                return Results.Created($"api/users/{userId}", userId);
             });
 
             group.MapPut("/", async ([FromBody] UpdateUserCommand command, IMediator mediator) =>
