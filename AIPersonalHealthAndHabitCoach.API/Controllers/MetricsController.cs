@@ -22,7 +22,12 @@ namespace AIPersonalHealthAndHabitCoach.API.Controllers
             group.MapPost("/activity", () => Results.Created());
             group.MapPost("/meal", () => Results.Created());
 
-            group.MapPut("/sleep", () => Results.NoContent());
+            group.MapPut("/sleep", async (UpdateSleepCommand command, IMediator mediator) =>
+            {
+                await mediator.Send(command);
+                return Results.NoContent();
+            });
+
             group.MapPut("/activity", () => Results.NoContent());
             group.MapPut("/meal", () => Results.NoContent());
 
