@@ -1,5 +1,8 @@
 ﻿using AIPersonalHealthAndHabitCoach.Application.Interfaces;
+using AIPersonalHealthAndHabitCoach.Domain.Entities; 
+using AIPersonalHealthAndHabitCoach.Domain.Exceptions;
 using MediatR;
+using Microsoft.EntityFrameworkCore; 
 
 namespace AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.UpdateSleep
 {
@@ -14,19 +17,16 @@ namespace AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.UpdateSleep
 
         public async Task Handle(UpdateSleepCommand request, CancellationToken cancellationToken)
         {
-            // TYMCZASOWY DEBUG
-            Console.WriteLine($"---> DEBUG: Otrzymane ID: {request.Id}");
-            Console.WriteLine($"---> DEBUG: Otrzymane Duration: {request.DurationMinutes}");
             var sleep = await _applicationDbContext.Sleeps
-                .FindAsync(new object[] { request.Id }, cancellationToken);
+                .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
             if (sleep == null)
             {
-                throw new KeyNotFoundException($"Sleep record with ID {request.Id} not found.");
+                throw new NotFoundException(nameof(Sleep), request.Id.ToString());
             }
 
             sleep.DurationMinutes = request.DurationMinutes;
-            sleep.SleepQuality = request.SleepQuality; 
+            sleep.SleepQuality = request.SleepQuality;
             sleep.StartDateTimeUtc = request.StartDate;
 
             await _applicationDbContext.SaveChangesAsync(cancellationToken);

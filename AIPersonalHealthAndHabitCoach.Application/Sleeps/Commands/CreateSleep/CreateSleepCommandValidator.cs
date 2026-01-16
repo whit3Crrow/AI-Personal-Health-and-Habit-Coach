@@ -2,9 +2,9 @@
 
 namespace AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.CreateSleep
 {
-    public class CreateSleepCommandValidator : AbstractValidator<CreateSleepCommand>
+    public class CreateActivityCommandValidator : AbstractValidator<CreateSleepCommand>
     {
-        public CreateSleepCommandValidator()
+        public CreateActivityCommandValidator()
         {
             RuleFor(x => x.DurationMinutes)
                 .GreaterThan(0)

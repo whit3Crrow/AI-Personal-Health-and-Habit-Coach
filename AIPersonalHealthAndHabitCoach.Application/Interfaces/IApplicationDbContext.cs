@@ -7,7 +7,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Interfaces
     {
         DbSet<Sleep> Sleeps { get; set; }
         DbSet<Activity> Activities { get; set; }
-        DbSet<Meal> Meals { get; set; }
+        DbSet<Domain.Entities.Meal> Meals { get; set; }
         DbSet<User> Users { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.UpdateSleep
 {
-    public class UpdateSleepCommandValidator : AbstractValidator<UpdateSleepCommand>
+    public class UpdateActivityCommandValidator : AbstractValidator<UpdateSleepCommand>
     {
-        public UpdateSleepCommandValidator()
+        public UpdateActivityCommandValidator()
         {
             RuleFor(x => x.Id)
                 .NotEmpty()
