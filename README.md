@@ -8,7 +8,7 @@ API do zarządzania metrykami zdrowotnymi użytkownika (sen, aktywność, posił
 
 | Metoda | Endpoint | Parametry | Opis |
 |--------|---------|-----------------|------|
-| GET    | /metrics | Query: `page` (optional), `pageSize` (optional), `type` (optional: sleep, activity, meal) | Pobiera wszystkie metryki z paginacją i możliwością filtrowania po typie |
+| GET    | /metrics | Query: `page` (optional), `pageSize` (optional), `metricTypes` (optional: sleep, activity, meal) | Pobiera wszystkie metryki z paginacją i możliwością filtrowania po typach |
 | GET    | /metrics/{id} | Path: `id` | Pobiera konkretną metrykę |
 | POST   | /metrics/sleep | Body: `DurationMinutes`, `SleepQuality`, `StartDate` | Dodaje nowe dane dotyczące snu |
 | POST   | /metrics/activity | Body: `Description`, `CaloriesBurned`, `ActivityType`, `StartDate` | Dodaje nowe dane dotyczące aktywności |
