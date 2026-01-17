@@ -3,9 +3,12 @@ using AIPersonalHealthAndHabitCoach.Application.Activities.Commands.UpdateActivi
 using AIPersonalHealthAndHabitCoach.Application.Meals.Commands.CreateMeal;
 using AIPersonalHealthAndHabitCoach.Application.Meals.Commands.UpdateMeal;
 using AIPersonalHealthAndHabitCoach.Application.Metrics.Queries.GetMetricById;
+using AIPersonalHealthAndHabitCoach.Application.Metrics.Queries.GetMetrics;
 using AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.CreateSleep;
 using AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.UpdateSleep;
+using AIPersonalHealthAndHabitCoach.Domain.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AIPersonalHealthAndHabitCoach.API.Endpoints
 {
@@ -16,7 +19,11 @@ namespace AIPersonalHealthAndHabitCoach.API.Endpoints
             var group = app.MapGroup("api/metrics")
                 .WithTags("Metrics");
 
-            group.MapGet("/", () => Results.Ok());
+            group.MapGet("/", async (IMediator mediator, int page = 1, int pageSize = 5, [FromQuery] MetricType[]? metricTypes = null) => 
+            {
+                var result = await mediator.Send(new GetMetricsQuery(page, pageSize, metricTypes ?? []));
+                return Results.Ok(result);
+            });
 
             group.MapGet("/{id}", async (Guid id, IMediator mediator) =>
             {
