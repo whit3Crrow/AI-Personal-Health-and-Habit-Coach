@@ -2,6 +2,7 @@
 using AIPersonalHealthAndHabitCoach.Application.Activities.Commands.UpdateActivity;
 using AIPersonalHealthAndHabitCoach.Application.Meals.Commands.CreateMeal;
 using AIPersonalHealthAndHabitCoach.Application.Meals.Commands.UpdateMeal;
+using AIPersonalHealthAndHabitCoach.Application.Metrics.Commands.DeleteMetricById;
 using AIPersonalHealthAndHabitCoach.Application.Metrics.Queries.GetMetricById;
 using AIPersonalHealthAndHabitCoach.Application.Metrics.Queries.GetMetrics;
 using AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.CreateSleep;
@@ -67,7 +68,11 @@ namespace AIPersonalHealthAndHabitCoach.API.Endpoints
                 return Results.NoContent();
             });
 
-            group.MapDelete("/{id}", (Guid id) => Results.NoContent());
+            group.MapDelete("/{id}", async (Guid id, IMediator mediator) => 
+            { 
+                await mediator.Send(new DeleteMetricByIdCommand(id));
+                return Results.NoContent();
+            });
         }
     }
 }
