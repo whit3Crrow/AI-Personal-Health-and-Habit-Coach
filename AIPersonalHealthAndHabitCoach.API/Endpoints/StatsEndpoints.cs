@@ -1,8 +1,8 @@
 ﻿using AIPersonalHealthAndHabitCoach.Domain.Enums;
 
-namespace AIPersonalHealthAndHabitCoach.API.Controllers
+namespace AIPersonalHealthAndHabitCoach.API.Endpoints
 {
-    public static class StatsController
+    public static class StatsEndpoints
     {
         public static void MapStatsEndpoints(this IEndpointRouteBuilder app)
         {

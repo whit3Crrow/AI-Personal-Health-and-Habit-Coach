@@ -1,4 +1,4 @@
-﻿using AIPersonalHealthAndHabitCoach.API.Controllers;
+﻿using AIPersonalHealthAndHabitCoach.API.Endpoints;
 
 namespace AIPersonalHealthAndHabitCoach.API
 {

@@ -1,6 +1,6 @@
-﻿namespace AIPersonalHealthAndHabitCoach.API.Controllers
+﻿namespace AIPersonalHealthAndHabitCoach.API.Endpoints
 {
-    public static class AIController
+    public static class AIEndpoints
     {
         public static void MapAIEndpoints(this IEndpointRouteBuilder app)
         {

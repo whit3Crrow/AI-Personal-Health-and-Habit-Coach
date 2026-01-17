@@ -3,9 +3,9 @@ using AIPersonalHealthAndHabitCoach.Application.Users.Commands.UpdateUser;
 using AIPersonalHealthAndHabitCoach.Application.Users.Queries.GetUser;
 using MediatR;
 
-namespace AIPersonalHealthAndHabitCoach.API.Controllers
+namespace AIPersonalHealthAndHabitCoach.API.Endpoints
 {
-    public static class UsersController
+    public static class UsersEndpoints
     {
         public static void MapUsersEndpoints(this IEndpointRouteBuilder app)
         {

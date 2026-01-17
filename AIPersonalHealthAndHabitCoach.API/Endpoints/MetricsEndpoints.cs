@@ -7,9 +7,9 @@ using AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.CreateSleep;
 using AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.UpdateSleep;
 using MediatR;
 
-namespace AIPersonalHealthAndHabitCoach.API.Controllers
+namespace AIPersonalHealthAndHabitCoach.API.Endpoints
 {
-    public static class MetricsController
+    public static class MetricsEndpoints
     {
         public static void MapMetricsEndpoints(this IEndpointRouteBuilder app)
         {
