@@ -9,6 +9,7 @@ namespace AIPersonalHealthAndHabitCoach.Infrastructure.Persistence
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
+        public DbSet<Metric> Metrics { get; set; }
         public DbSet<Sleep> Sleeps { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Meal> Meals { get; set; }
@@ -18,9 +19,9 @@ namespace AIPersonalHealthAndHabitCoach.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.ApplyConfiguration(new MetricConfiguration());
             modelBuilder.ApplyConfiguration(new ActivityConfiguration());
             modelBuilder.ApplyConfiguration(new MealConfiguration());
-            modelBuilder.ApplyConfiguration(new MetricConfiguration());
             modelBuilder.ApplyConfiguration(new SleepConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
