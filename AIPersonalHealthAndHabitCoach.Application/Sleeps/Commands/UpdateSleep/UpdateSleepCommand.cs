@@ -1,10 +1,13 @@
 ﻿using AIPersonalHealthAndHabitCoach.Domain.Enums;
 using MediatR;
 
-public class UpdateSleepCommand : IRequest
+namespace AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.UpdateSleep
 {
-    public required Guid Id { get; set; } 
-    public required int DurationMinutes { get; set; }
-    public required SleepQuality SleepQuality { get; set; }
-    public required DateTime StartDate { get; set; }
+    public class UpdateSleepCommand : IRequest
+    {
+        public required Guid Id { get; set; }
+        public required int DurationMinutes { get; set; }
+        public required SleepQuality SleepQuality { get; set; }
+        public required DateTime StartDate { get; set; }
+    }
 }

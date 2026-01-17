@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace AIPersonalHealthAndHabitCoach.Application.Meal.Commands.UpdateMeal
+namespace AIPersonalHealthAndHabitCoach.Application.Meals.Commands.UpdateMeal
 {
     public class UpdateMealCommand : IRequest
     {
@@ -9,5 +9,6 @@ namespace AIPersonalHealthAndHabitCoach.Application.Meal.Commands.UpdateMeal
         public required decimal ProteinGrams { get; set; }
         public required decimal CarbonGrams { get; set; }
         public required decimal FatGrams { get; set; }
+        public required DateTime StartDate { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Activities.Commands.UpdateAc
             var activity = await _applicationDbContext.Activities
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
-            if (activity == null)
+            if (activity is null)
             {
                 throw new NotFoundException(nameof(Activity), request.Id.ToString());
             }
@@ -28,6 +28,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Activities.Commands.UpdateAc
             activity.Description = request.Description;
             activity.CaloriesBurned = request.CaloriesBurned;
             activity.ActivityType = request.ActivityType;
+            activity.StartDateTimeUtc = request.StartDate;
 
             await _applicationDbContext.SaveChangesAsync(cancellationToken);
         }

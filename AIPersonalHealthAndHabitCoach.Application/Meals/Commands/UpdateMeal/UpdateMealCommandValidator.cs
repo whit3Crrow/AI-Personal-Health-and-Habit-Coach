@@ -1,26 +1,30 @@
 ﻿using FluentValidation;
 
-namespace AIPersonalHealthAndHabitCoach.Application.Meal.Commands.UpdateMeal
+namespace AIPersonalHealthAndHabitCoach.Application.Meals.Commands.UpdateMeal
 {
     public class UpdateMealCommandValidator : AbstractValidator<UpdateMealCommand>
     {
         public UpdateMealCommandValidator()
         {
-            RuleFor(v => v.Id)
-                .NotEmpty().WithMessage("Meal ID is required.");
+            RuleFor(x => x.Id)
+                .NotEmpty()
+                .WithMessage("Meal ID cannot be empty.");
 
-            RuleFor(v => v.Description)
-                .NotEmpty().WithMessage("Description is required.")
-                .MaximumLength(200).WithMessage("Description must not exceed 200 characters.");
+            RuleFor(x => x.Description)
+                .MaximumLength(512)
+                .WithMessage("Description must not exceed 512 characters.");
 
-            RuleFor(v => v.ProteinGrams)
-                .GreaterThanOrEqualTo(0).WithMessage("Protein cannot be negative.");
+            RuleFor(x => x.ProteinGrams)
+                .GreaterThanOrEqualTo(0)
+                .WithMessage("Protein value cannot be negative.");
 
-            RuleFor(v => v.CarbonGrams)
-                .GreaterThanOrEqualTo(0).WithMessage("Carbohydrates cannot be negative.");
+            RuleFor(x => x.CarbonGrams)
+                .GreaterThanOrEqualTo(0)
+                .WithMessage("Carbon value cannot be negative.");
 
-            RuleFor(v => v.FatGrams)
-                .GreaterThanOrEqualTo(0).WithMessage("Fat cannot be negative.");
+            RuleFor(x => x.FatGrams)
+                .GreaterThanOrEqualTo(0)
+                .WithMessage("Fat value cannot be negative.");
         }
     }
 }

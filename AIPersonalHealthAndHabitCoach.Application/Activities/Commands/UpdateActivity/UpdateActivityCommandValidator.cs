@@ -6,18 +6,21 @@ namespace AIPersonalHealthAndHabitCoach.Application.Activities.Commands.UpdateAc
     {
         public UpdateActivityCommandValidator()
         {
-            RuleFor(v => v.Id)
-                .NotEmpty().WithMessage("Activity ID is required.");
+            RuleFor(x => x.Id)
+                .NotEmpty()
+                .WithMessage("Activity ID cannot be empty.");
 
-            RuleFor(v => v.Description)
-                .NotEmpty().WithMessage("Description is required.")
-                .MaximumLength(200).WithMessage("Description must not exceed 200 characters.");
+            RuleFor(x => x.Description)
+                .MaximumLength(512)
+                .WithMessage("Description must not exceed 512 characters.");
 
-            RuleFor(v => v.CaloriesBurned)
-                .GreaterThan(0).WithMessage("Calories burned must be greater than 0.");
+            RuleFor(x => x.CaloriesBurned)
+                .GreaterThan(0)
+                .WithMessage("Calories burned must be greater than 0.");
 
-            RuleFor(v => v.ActivityType)
-                .IsInEnum().WithMessage("Invalid activity type.");
+            RuleFor(x => x.ActivityType)
+                .IsInEnum()
+                .WithMessage("Invalid activity type.");
         }
     }
 }

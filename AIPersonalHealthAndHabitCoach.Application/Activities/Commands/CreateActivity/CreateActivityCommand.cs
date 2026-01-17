@@ -8,5 +8,6 @@ namespace AIPersonalHealthAndHabitCoach.Application.Activities.Commands.CreateAc
         public required string Description { get; set; }
         public required int CaloriesBurned { get; set; }
         public required ActivityType ActivityType { get; set; }
+        public required DateTime StartDate { get; set; }
     }
 }

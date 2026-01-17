@@ -1,9 +1,10 @@
 ﻿using AIPersonalHealthAndHabitCoach.Application.Activities.Commands.CreateActivity;
 using AIPersonalHealthAndHabitCoach.Application.Activities.Commands.UpdateActivity;
-using AIPersonalHealthAndHabitCoach.Application.Meal.Commands.UpdateMeal;
 using AIPersonalHealthAndHabitCoach.Application.Meals.Commands.CreateMeal;
+using AIPersonalHealthAndHabitCoach.Application.Meals.Commands.UpdateMeal;
 using AIPersonalHealthAndHabitCoach.Application.Metrics.Queries.GetMetricById;
 using AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.CreateSleep;
+using AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.UpdateSleep;
 using MediatR;
 
 namespace AIPersonalHealthAndHabitCoach.API.Controllers
@@ -16,10 +17,10 @@ namespace AIPersonalHealthAndHabitCoach.API.Controllers
                 .WithTags("Metrics");
 
             group.MapGet("/", () => Results.Ok());
+
             group.MapGet("/{id}", async (Guid id, IMediator mediator) =>
             {
                 var result = await mediator.Send(new GetMetricByIdQuery(id));
-
                 return Results.Ok(result);
             });
 

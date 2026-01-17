@@ -2,7 +2,6 @@
 using AIPersonalHealthAndHabitCoach.Application.Users.Commands.UpdateUser;
 using AIPersonalHealthAndHabitCoach.Application.Users.Queries.GetUser;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AIPersonalHealthAndHabitCoach.API.Controllers
 {
@@ -16,22 +15,18 @@ namespace AIPersonalHealthAndHabitCoach.API.Controllers
             group.MapPost("/", async (CreateUserCommand command, IMediator mediator) =>
             {
                 var userId = await mediator.Send(command);
-
                 return Results.Created($"api/users/{userId}", userId);
             });
 
-            group.MapPut("/", async ([FromBody] UpdateUserCommand command, IMediator mediator) =>
+            group.MapPut("/", async (UpdateUserCommand command, IMediator mediator) =>
             {
                 await mediator.Send(command);
-
                 return Results.NoContent();
             });
 
             group.MapGet("/", async (IMediator mediator) =>
             {
-                var query = new GetUserQuery();
-                var result = await mediator.Send(query);
-
+                var result = await mediator.Send(new GetUserQuery());
                 return Results.Ok(result);
             });
         }

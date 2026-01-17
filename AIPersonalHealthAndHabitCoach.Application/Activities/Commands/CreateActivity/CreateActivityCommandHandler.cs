@@ -15,16 +15,16 @@ namespace AIPersonalHealthAndHabitCoach.Application.Activities.Commands.CreateAc
 
         public async Task<Guid> Handle(CreateActivityCommand request, CancellationToken cancellationToken)
         {
-            var activity = new AIPersonalHealthAndHabitCoach.Domain.Entities.Activity
+            var activity = new Activity
             {
-                Id = Guid.CreateVersion7(),
+                Id = Guid.NewGuid(),
                 Description = request.Description,
                 CaloriesBurned = request.CaloriesBurned,
-                ActivityType = request.ActivityType
+                ActivityType = request.ActivityType,
+                StartDateTimeUtc = request.StartDate
             };
 
             _applicationDbContext.Activities.Add(activity);
-
             await _applicationDbContext.SaveChangesAsync(cancellationToken);
 
             return activity.Id;

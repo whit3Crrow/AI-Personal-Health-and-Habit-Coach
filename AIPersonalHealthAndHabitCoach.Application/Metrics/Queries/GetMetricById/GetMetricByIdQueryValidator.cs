@@ -7,7 +7,8 @@ namespace AIPersonalHealthAndHabitCoach.Application.Metrics.Queries.GetMetricByI
         public GetMetricByIdQueryValidator()
         {
             RuleFor(x => x.Id)
-                .NotEmpty().WithMessage("ID is required.");
+                .NotEmpty()
+                .WithMessage("Metric ID cannot be empty.");
         }
     }
 }

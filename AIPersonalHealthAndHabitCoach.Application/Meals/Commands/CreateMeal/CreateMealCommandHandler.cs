@@ -15,13 +15,14 @@ namespace AIPersonalHealthAndHabitCoach.Application.Meals.Commands.CreateMeal
 
         public async Task<Guid> Handle(CreateMealCommand request, CancellationToken cancellationToken)
         {
-            var meal = new Domain.Entities.Meal
+            var meal = new Meal
             {
-                Id = Guid.CreateVersion7(),
+                Id = Guid.NewGuid(),
                 Description = request.Description,
                 ProteinGrams = request.ProteinGrams,
                 CarbonGrams = request.CarbonGrams,
                 FatGrams = request.FatGrams,
+                StartDateTimeUtc = request.StartDate
             };
 
             _applicationDbContext.Meals.Add(meal);

@@ -1,5 +1,4 @@
-﻿using AIPersonalHealthAndHabitCoach.Application.Meals.Commands.CreateMeal;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace AIPersonalHealthAndHabitCoach.Application.Meals.Commands.CreateMeal
 {
@@ -7,18 +6,21 @@ namespace AIPersonalHealthAndHabitCoach.Application.Meals.Commands.CreateMeal
     {
         public CreateMealCommandValidator()
         {
-            RuleFor(v => v.Description)
-                .NotEmpty().WithMessage("Description is required.")
-                .MaximumLength(200).WithMessage("Description must not exceed 200 characters.");
+            RuleFor(x => x.Description)
+                .MaximumLength(512)
+                .WithMessage("Description must not exceed 512 characters.");
 
-            RuleFor(v => v.ProteinGrams)
-                .GreaterThanOrEqualTo(0).WithMessage("Protein value cannot be negative.");
+            RuleFor(x => x.ProteinGrams)
+                .GreaterThanOrEqualTo(0)
+                .WithMessage("Protein value cannot be negative.");
 
-            RuleFor(v => v.CarbonGrams)
-                .GreaterThanOrEqualTo(0).WithMessage("Carbohydrates value cannot be negative.");
+            RuleFor(x => x.CarbonGrams)
+                .GreaterThanOrEqualTo(0)
+                .WithMessage("Carbon value cannot be negative.");
 
-            RuleFor(v => v.FatGrams)
-                .GreaterThanOrEqualTo(0).WithMessage("Fat value cannot be negative.");
+            RuleFor(x => x.FatGrams)
+                .GreaterThanOrEqualTo(0)
+                .WithMessage("Fat value cannot be negative.");
         }
     }
 }

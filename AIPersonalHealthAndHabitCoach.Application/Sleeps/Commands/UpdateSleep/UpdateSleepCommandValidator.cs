@@ -1,5 +1,4 @@
-﻿using AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.UpdateSleep; // Pamiętaj o tym usingu
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.UpdateSleep
 {
@@ -9,7 +8,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.UpdateSleep
         {
             RuleFor(x => x.Id)
                 .NotEmpty()
-                .WithMessage("Sleep ID is required.");
+                .WithMessage("Sleep ID cannot be empty.");
 
             RuleFor(x => x.DurationMinutes)
                 .GreaterThan(0)
