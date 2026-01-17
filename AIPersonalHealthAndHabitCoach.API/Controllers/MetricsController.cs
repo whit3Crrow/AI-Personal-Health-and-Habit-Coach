@@ -2,6 +2,7 @@
 using AIPersonalHealthAndHabitCoach.Application.Activities.Commands.UpdateActivity;
 using AIPersonalHealthAndHabitCoach.Application.Meal.Commands.UpdateMeal;
 using AIPersonalHealthAndHabitCoach.Application.Meals.Commands.CreateMeal;
+using AIPersonalHealthAndHabitCoach.Application.Metrics.Queries.GetMetricById;
 using AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.CreateSleep;
 using MediatR;
 
@@ -15,7 +16,12 @@ namespace AIPersonalHealthAndHabitCoach.API.Controllers
                 .WithTags("Metrics");
 
             group.MapGet("/", () => Results.Ok());
-            group.MapGet("/{id}", (Guid id) => Results.Ok());
+            group.MapGet("/{id}", async (Guid id, IMediator mediator) =>
+            {
+                var result = await mediator.Send(new GetMetricByIdQuery(id));
+
+                return Results.Ok(result);
+            });
 
             group.MapPost("/sleep", async (CreateSleepCommand command, IMediator mediator) =>
             {
@@ -34,8 +40,6 @@ namespace AIPersonalHealthAndHabitCoach.API.Controllers
                 var mealId = await mediator.Send(command);
                 return Results.Created($"api/metrics/meal/{mealId}", mealId);
             });
-
-            // --- UPDATE (PUT) ---
 
             group.MapPut("/sleep", async (UpdateSleepCommand command, IMediator mediator) =>
             {

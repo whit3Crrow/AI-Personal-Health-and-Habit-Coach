@@ -17,7 +17,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Meals.Commands.CreateMeal
         {
             var meal = new Domain.Entities.Meal
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.CreateVersion7(),
                 Description = request.Description,
                 ProteinGrams = request.ProteinGrams,
                 CarbonGrams = request.CarbonGrams,

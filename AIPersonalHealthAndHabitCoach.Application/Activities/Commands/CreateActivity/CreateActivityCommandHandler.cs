@@ -17,7 +17,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Activities.Commands.CreateAc
         {
             var activity = new AIPersonalHealthAndHabitCoach.Domain.Entities.Activity
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.CreateVersion7(),
                 Description = request.Description,
                 CaloriesBurned = request.CaloriesBurned,
                 ActivityType = request.ActivityType

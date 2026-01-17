@@ -17,7 +17,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Sleeps.Commands.CreateSleep
         {
             var sleep = new Sleep
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.CreateVersion7(),
                 DurationMinutes = request.DurationMinutes,
                 SleepQuality = request.SleepQuality,
                 StartDateTimeUtc = request.StartDate
