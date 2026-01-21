@@ -3,12 +3,9 @@ using MediatR;
 
 namespace AIPersonalHealthAndHabitCoach.Application.Stats.Queries.GetMetricsSummary
 {
-    public class GetMetricsSummaryQuery : MetricStatsSummaryQueryDto, IRequest<MetricStatsDto>
+    public class GetMetricsSummaryQuery : IRequest<MetricStatsDto>
     {
-        public GetMetricsSummaryQuery(DateTime startDate, DateTime endDate)
-        {
-            StartDate = startDate;
-            EndDate = endDate;
-        }
+        public required DateTime StartDate { get; set; }
+        public required DateTime EndDate { get; set; }
     }
 }

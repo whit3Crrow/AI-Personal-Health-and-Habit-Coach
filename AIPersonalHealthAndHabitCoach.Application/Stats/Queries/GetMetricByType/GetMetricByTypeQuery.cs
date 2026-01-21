@@ -4,13 +4,10 @@ using MediatR;
 
 namespace AIPersonalHealthAndHabitCoach.Application.Stats.Queries.GetMetricByType
 {
-    public class GetMetricByTypeQuery : MetricStatsTypeQueryDto, IRequest<MetricStatsDto>
+    public class GetMetricByTypeQuery : IRequest<MetricStatsDto>
     {
-        public GetMetricByTypeQuery(DateTime startDate, DateTime endDate, MetricType metricType)
-        {
-            StartDate = startDate;
-            EndDate = endDate;
-            MetricType = metricType;
-        }
+        public required DateTime StartDate { get; set; }
+        public required DateTime EndDate { get; set; }
+        public required MetricType Type { get; set; }
     }
 }

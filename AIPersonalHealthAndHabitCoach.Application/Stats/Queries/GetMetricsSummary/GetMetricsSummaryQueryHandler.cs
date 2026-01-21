@@ -4,11 +4,11 @@ using MediatR;
 
 namespace AIPersonalHealthAndHabitCoach.Application.Stats.Queries.GetMetricsSummary
 {
-    public class GetMetricsSummaryHandler : IRequestHandler<GetMetricsSummaryQuery, MetricStatsDto>
+    public class GetMetricsSummaryQueryHandler : IRequestHandler<GetMetricsSummaryQuery, MetricStatsDto>
     {
         private readonly IMetricsStatsService _metricsStatsService;
 
-        public GetMetricsSummaryHandler(IMetricsStatsService metricsStatsService)
+        public GetMetricsSummaryQueryHandler(IMetricsStatsService metricsStatsService)
         {
             _metricsStatsService = metricsStatsService;
         }

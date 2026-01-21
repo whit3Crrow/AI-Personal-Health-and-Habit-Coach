@@ -4,11 +4,11 @@ using MediatR;
 
 namespace AIPersonalHealthAndHabitCoach.Application.Stats.Queries.GetMetricByType
 {
-    public class GetMetricByTypeHandler : IRequestHandler<GetMetricByTypeQuery, MetricStatsDto>
+    public class GetMetricByTypeQueryHandler : IRequestHandler<GetMetricByTypeQuery, MetricStatsDto>
     {
         private readonly IMetricsStatsService _metricsStatsService;
 
-        public GetMetricByTypeHandler(IMetricsStatsService metricsStatsService)
+        public GetMetricByTypeQueryHandler(IMetricsStatsService metricsStatsService)
         {
             _metricsStatsService = metricsStatsService;
         }
@@ -18,7 +18,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Stats.Queries.GetMetricByTyp
             return await _metricsStatsService.GetMetricByType(
                 request.StartDate,
                 request.EndDate,
-                request.MetricType,
+                request.Type,
                 cancellationToken);
         }
     }

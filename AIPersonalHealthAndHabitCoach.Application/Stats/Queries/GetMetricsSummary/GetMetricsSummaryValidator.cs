@@ -7,8 +7,13 @@ namespace AIPersonalHealthAndHabitCoach.Application.Stats.Queries.GetMetricsSumm
         public GetMetricsSummaryValidator()
         {
             RuleFor(x => x.EndDate)
-                .GreaterThanOrEqualTo(x => x.StartDate)
-                .WithMessage("Data końcowa (To) musi być późniejsza lub równa dacie początkowej (From).");
+                .GreaterThan(x => x.StartDate)
+                .WithMessage("End date cannot be earlier than start date.");
+
+            RuleFor(x => x)
+                .Must(x => x.EndDate <= x.StartDate.AddMonths(3))
+                .When(x => x.EndDate > x.StartDate)
+                .WithMessage("The date range cannot exceed 3 months.");
         }
     }
 }

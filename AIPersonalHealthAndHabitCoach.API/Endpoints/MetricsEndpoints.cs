@@ -50,20 +50,35 @@ namespace AIPersonalHealthAndHabitCoach.API.Endpoints
                 return Results.Created($"api/metrics/meal/{mealId}", mealId);
             });
 
-            group.MapPut("/sleep", async (UpdateSleepCommand command, IMediator mediator) =>
+            group.MapPut("/sleep/{id}", async (Guid id, UpdateSleepCommand command, IMediator mediator) =>
             {
+                if (id != command.Id)
+                {
+                    return Results.BadRequest();
+                }
+
                 await mediator.Send(command);
                 return Results.NoContent();
             });
 
-            group.MapPut("/activity", async (UpdateActivityCommand command, IMediator mediator) =>
+            group.MapPut("/activity{id}", async (Guid id, UpdateActivityCommand command, IMediator mediator) =>
             {
+                if (id != command.Id)
+                {
+                    return Results.BadRequest();
+                }
+
                 await mediator.Send(command);
                 return Results.NoContent();
             });
 
-            group.MapPut("/meal", async (UpdateMealCommand command, IMediator mediator) =>
+            group.MapPut("/meal/{id}", async (Guid id, UpdateMealCommand command, IMediator mediator) =>
             {
+                if (id != command.Id)
+                {
+                    return Results.BadRequest();
+                }
+
                 await mediator.Send(command);
                 return Results.NoContent();
             });
