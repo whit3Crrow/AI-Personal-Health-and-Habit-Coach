@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AIPersonalHealthAndHabitCoach.Domain.Enums;
+﻿using AIPersonalHealthAndHabitCoach.Domain.Enums;
 
 namespace AIPersonalHealthAndHabitCoach.Domain.Entities
 {
@@ -10,10 +9,10 @@ namespace AIPersonalHealthAndHabitCoach.Domain.Entities
 
         public override List<string> GetTags()
         {
-            var tags = new List<string>();
-
-            tags.Add($"Quality: {SleepQuality}");
-
+            var tags = new List<string>
+            {
+                {SleepQuality.ToString()}
+            };
 
             if (DurationMinutes > 0 && DurationMinutes <= 45)
             {
@@ -32,8 +31,7 @@ namespace AIPersonalHealthAndHabitCoach.Domain.Entities
                 tags.Add("Long Sleep");
             }
 
-            string q = SleepQuality.ToString();
-            if (DurationMinutes >= 420 && (q == "Good"))
+            if (DurationMinutes >= 420 && SleepQuality == SleepQuality.Good)
             {
                 tags.Add("Deep Regeneration");
             }

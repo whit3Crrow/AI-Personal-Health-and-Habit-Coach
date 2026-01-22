@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic; // Pamiętaj o tym usingu dla List<>
-
-namespace AIPersonalHealthAndHabitCoach.Domain.Entities
+﻿namespace AIPersonalHealthAndHabitCoach.Domain.Entities
 {
     public class Meal : Metric
     {
@@ -21,15 +19,12 @@ namespace AIPersonalHealthAndHabitCoach.Domain.Entities
             {
                 tags.Add("Low Carb");
             }
-
             else if (CarbonGrams > 80)
             {
                 tags.Add("High Energy");
             }
 
-            if (ProteinGrams > 20 &&
-                CarbonGrams >= 30 && CarbonGrams <= 90 &&
-                FatGrams <= 35)
+            if (ProteinGrams > 20 && CarbonGrams >= 30 && CarbonGrams <= 90 && FatGrams <= 35)
             {
                 tags.Add("Well Balanced");
             }

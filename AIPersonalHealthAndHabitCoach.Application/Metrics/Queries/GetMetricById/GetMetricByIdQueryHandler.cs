@@ -30,11 +30,10 @@ namespace AIPersonalHealthAndHabitCoach.Application.Metrics.Queries.GetMetricByI
             var metricDto = new MetricDetailDto
             {
                 Id = metric.Id,
-                Date = metric.StartDateTimeUtc,
-                ActivityType = (metric is Activity a) ? a.ActivityType : null,
+                StartDateTimeUtc = metric.StartDateTimeUtc,
+                Type = metric.Type,
                 Tags = metric.GetTags()
             };
-
 
             if (metric is Sleep sleep)
             {
