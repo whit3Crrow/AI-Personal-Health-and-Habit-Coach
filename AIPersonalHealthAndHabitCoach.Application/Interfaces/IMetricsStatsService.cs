@@ -5,7 +5,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Interfaces
 {
     public interface IMetricsStatsService
     {
-        Task<MetricStatsDto> GetMetricByType(DateTime startDate, DateTime endDate, MetricType metricType, CancellationToken cancellationToken);
-        Task<MetricStatsDto> GetMetricsSummary(DateTime startDate, DateTime endDate, CancellationToken cancellationToken);
+        Task<MetricStatsDto> GetMetricByTypeAsync(DateTime startDate, DateTime endDate, MetricType metricType, CancellationToken cancellationToken);
+        Task<MetricStatsDto> GetMetricsSummaryAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken);
     }
 }

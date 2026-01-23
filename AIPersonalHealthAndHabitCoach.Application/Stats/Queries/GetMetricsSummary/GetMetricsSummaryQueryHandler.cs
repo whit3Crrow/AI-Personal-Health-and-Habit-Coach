@@ -15,7 +15,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Stats.Queries.GetMetricsSumm
 
         public async Task<MetricStatsDto> Handle(GetMetricsSummaryQuery request, CancellationToken cancellationToken)
         {
-            return await _metricsStatsService.GetMetricsSummary(
+            return await _metricsStatsService.GetMetricsSummaryAsync(
                 request.StartDate,
                 request.EndDate,
                 cancellationToken);

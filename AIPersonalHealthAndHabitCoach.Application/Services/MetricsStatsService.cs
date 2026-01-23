@@ -14,7 +14,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Services
             _applicationDbContext = applicationDbContext;
         }
 
-        public async Task<MetricStatsDto> GetMetricByType(DateTime startDate, DateTime endDate, MetricType metricType, CancellationToken cancellationToken)
+        public async Task<MetricStatsDto> GetMetricByTypeAsync(DateTime startDate, DateTime endDate, MetricType metricType, CancellationToken cancellationToken)
         {
             return metricType switch
             {
@@ -25,7 +25,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Services
             };
         }
 
-        public async Task<MetricStatsDto> GetMetricsSummary(DateTime startDate, DateTime endDate, CancellationToken cancellationToken)
+        public async Task<MetricStatsDto> GetMetricsSummaryAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken)
         {
             var sleepStats = await GetSleepStatsAsync(startDate, endDate, cancellationToken);
             var activityStats = await GetActivityStatsAsync(startDate, endDate, cancellationToken);

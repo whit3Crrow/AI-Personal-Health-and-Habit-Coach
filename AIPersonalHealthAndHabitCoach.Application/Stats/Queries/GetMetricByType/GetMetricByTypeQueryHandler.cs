@@ -15,7 +15,7 @@ namespace AIPersonalHealthAndHabitCoach.Application.Stats.Queries.GetMetricByTyp
 
         public async Task<MetricStatsDto> Handle(GetMetricByTypeQuery request, CancellationToken cancellationToken)
         {
-            return await _metricsStatsService.GetMetricByType(
+            return await _metricsStatsService.GetMetricByTypeAsync(
                 request.StartDate,
                 request.EndDate,
                 request.Type,
