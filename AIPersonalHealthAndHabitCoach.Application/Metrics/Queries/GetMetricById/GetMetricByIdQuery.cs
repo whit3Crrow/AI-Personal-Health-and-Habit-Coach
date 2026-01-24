@@ -1,9 +1,10 @@
 ﻿using AIPersonalHealthAndHabitCoach.Domain.Entities;
+using AIPersonalHealthAndHabitCoach.Domain.Dtos;
 using MediatR;
 
 namespace AIPersonalHealthAndHabitCoach.Application.Metrics.Queries.GetMetricById
 {
-    public class GetMetricByIdQuery : IRequest<Metric>
+    public class GetMetricByIdQuery : IRequest<MetricDetailDto>
     {
         public Guid Id { get; set; }
 

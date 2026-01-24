@@ -1,4 +1,6 @@
 ﻿using AIPersonalHealthAndHabitCoach.Application.Behaviors;
+using AIPersonalHealthAndHabitCoach.Application.Interfaces;
+using AIPersonalHealthAndHabitCoach.Application.Services;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +19,8 @@ namespace AIPersonalHealthAndHabitCoach.Application.Extensions
             });
 
             services.AddValidatorsFromAssembly(applicationAssembly);
+
+            services.AddScoped<IMetricsStatsService, MetricsStatsService>();
         }
     }
 }

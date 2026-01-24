@@ -48,3 +48,14 @@ API do zarządzania metrykami zdrowotnymi użytkownika (sen, aktywność, posił
 ## Diagram UML
 
 ![DiagramUML](./docs/diagram_uml.png)
+
+## Uruchomienie lokalne
+
+1. Sklonuj repozytorium na dysk.
+2. **Konfiguracja:** W pliku `appsettings.json` ustaw klucz do OpenAI, jeżeli chcesz korzystać z funkcjonalności AI.
+3. **Baza danych:** Wgraj migracje poniższą komendą:
+    ```bash
+    dotnet ef database update --project AIPersonalHealthAndHabitCoach.Infrastructure --startup-project AIPersonalHealthAndHabitCoach.API
+    ```
+4. **Start:** Uruchom aplikację.
+5. **Interfejs API:** Będzie dostępny pod adresem: https://localhost:7234/scalar/v1
