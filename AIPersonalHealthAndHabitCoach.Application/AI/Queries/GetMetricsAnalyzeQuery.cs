@@ -6,6 +6,6 @@ namespace AIPersonalHealthAndHabitCoach.Application.AI.Queries
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Question { get; set; } = string.Empty;
+        public string? Question { get; set; }
     }
 }
