@@ -1,4 +1,7 @@
-﻿namespace AIPersonalHealthAndHabitCoach.API.Endpoints
+﻿using AIPersonalHealthAndHabitCoach.Application.AI.Queries;
+using MediatR;
+
+namespace AIPersonalHealthAndHabitCoach.API.Endpoints
 {
     public static class AIEndpoints
     {
@@ -7,7 +10,11 @@
             var group = app.MapGroup("api/ai")
                 .WithTags("AI");
 
-            group.MapGet("/metrics/analyze", () => Results.Ok());
+            group.MapGet("/metrics/analyze", async ([AsParameters] GetMetricsAnalyzeQuery query, IMediator mediator) =>
+            {
+                var result = await mediator.Send(query);
+                return Results.Ok(result);
+            });
         }
     }
 }
